@@ -487,7 +487,7 @@ class MyThing {
 **Source:** https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this
 
 - [x] Explain how prototypal inheritance works
-  - **Explanation:** All JavaScript objects have a `__proto__` property that is a reference to another object, which is called the object's "prototype". If a property is accessed on an object, but not found the JavaScript engine check's that object prototype. If again it's not found it checks that prototypes prototype on up the chain until it reaches the top of the chain.
+  - **Explanation:** All JavaScript objects have a `__proto__` property that is a reference to another object, which is called the object's "prototype". If a property is accessed on an object, but not found, the JavaScript engine check's that object prototype. If again it's not found, it checks that prototype's prototype on up the chain until it reaches the top of the chain.
   - **Use:** It can help reduce redundant code.
   - **Example:**
 
@@ -496,7 +496,7 @@ function Parent() {
   this.name = 'Parent';
 }
 Parent.prototype.greet = function () {
-  console.log('Hello from ' + this.name);
+  console.log('Hello from ' + Parent.name);
 };
 const child = Object.create(Parent.prototype);
 child.cry = function () {
@@ -506,11 +506,11 @@ child.cry();
 // waaaaaahhhh!
 child.greet();
 // hello from Parent
-child.constructor;
+console.log(child.constructor);
 // ƒ Parent() {
 // this.name = 'Parent';
 // }
-child.constructor.name;
+console.log(child.constructor.name);
 // 'Parent'
 ```
 
@@ -588,8 +588,8 @@ setTimeout(function () {
 - [x] How do you organize your code? (module pattern, classical inheritance?)
   - **Explanation:** My preference is to use ES6 Modules to organize my code for the following reasons:
     - Easier to reuse code
-    - Easier to keep code separated leading to...
-    - Easier to maintain
+    - You can keep different parts of your code cleanly separated, which makes writing and maintaining your code much easier and less error-prone.
+    
   - **Source:** https://www.theodinproject.com/lessons/node-path-javascript-es6-modules
 - [x] What's the difference between host objects and native objects?
   - **Explanation:** Native objects are part of the language as defined by ECMAScript specification. Host objects are those provided by the runtime (browser or Node).
@@ -1296,7 +1296,7 @@ import { name, draw, reportArea, reportPerimeter } from './modules/square.js';
   - **Example:**
   - **Source:**
 
-- [ ] What are Globals in Node.js?
+- [x] What are Globals in Node.js?
 
   - **Explanation:**  Node.js Global Objects are the objects that are available in all modules. Global Objects are built-in objects that are part of the JavaScript and can be used directly in the application without importing any particular module.
   - **Use:** Common built-in modules, functions, strings and objects used widely in Node. 
@@ -1458,10 +1458,42 @@ function factorial(num) {
 
 - [ ] What is polymorphism?
 
-  - **Explanation:**
-  - **Use:**
+  - **Explanation:** Polymorphism is a concept of Object-oriented programming(OOP) Paradigm that provides a way to perform a single action in different ways.
+  - **Use:**  It provides an ability to call the same method on different JavaScript objects
   - **Example:**
-  - **Source:**
+  ```javascript
+  class A  
+  {  
+     display()  
+    {  
+      console.log("A is invoked");  
+    }  
+  }  
+
+  class B extends A  
+  {  
+    
+  }  
+
+  class C extends A  
+  {  
+    constructor(){ 
+      super()
+    }
+
+    //overrides the display function of A and hence behaves differently
+    display(){ 
+      console.log("C is invoked")
+    }
+  }  
+  var b=new B();  
+  var c = new C()
+  b.display();  //output: :"A is invoked"
+  c.display(); //Output: "C is invoked"
+  ```
+
+
+  - **Source:**https://www.javatpoint.com/javascript-oops-polymorphism, www.stackOverflow.com
 
 - [ ] What is encapsulation?
 
